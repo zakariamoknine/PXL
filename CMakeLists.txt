@@ -6,6 +6,8 @@ project(PXL VERSION 1.0 LANGUAGES C)
 
 add_library(PXL STATIC
     src/main.c
+    deps/tinycthread/tinycthread.c
+    deps/stb/stb_image.c
 )
 
 find_package(Vulkan REQUIRED)
