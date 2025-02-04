@@ -6,8 +6,19 @@
 #include <stdio.h>
 
 /*
-*
+* Error manager
 */
+PXL_THREAD_LOCAL const char* _PxlCurrentThreadError = NULL;
+
+void _pxlInputError(const char* description)
+{
+    _PxlCurrentThreadError = description;
+}
+
+const char* pxlGetError()
+{
+    return _PxlCurrentThreadError;
+}
 
 /*
 * Allocator

@@ -5,7 +5,7 @@ project(PXL VERSION 1.0 LANGUAGES C)
 # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -no-pie -pg")
 
 add_library(PXL STATIC
-    src/main.c
+    src/init.c
     deps/tinycthread/tinycthread.c
     deps/stb/stb_image.c
 )
