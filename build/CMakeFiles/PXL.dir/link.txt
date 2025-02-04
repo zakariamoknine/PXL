@@ -1,2 +1,0 @@
-C:\mingw64\bin\ar.exe qc libPXL.a CMakeFiles/PXL.dir/src/main.c.obj
-C:\mingw64\bin\ranlib.exe libPXL.a

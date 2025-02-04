@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/devspace/PXL/build",
-  "command": "C:\\mingw64\\bin\\gcc.exe  @CMakeFiles/PXL.dir/includes_C.rsp -g -o CMakeFiles\\PXL.dir\\src\\main.c.obj -c C:\\devspace\\PXL\\src\\main.c",
-  "file": "C:/devspace/PXL/src/main.c",
-  "output": "CMakeFiles/PXL.dir/src/main.c.obj"
-}
-]
