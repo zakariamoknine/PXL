@@ -1,0 +1,3 @@
+C:/devspace/PXL/build/CMakeFiles/PXL.dir
+C:/devspace/PXL/build/CMakeFiles/edit_cache.dir
+C:/devspace/PXL/build/CMakeFiles/rebuild_cache.dir
