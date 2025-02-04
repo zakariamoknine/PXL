@@ -39,7 +39,7 @@
 
 
 /*
-* Allocators
+* Memory Allocator
 */
 void* _pxlMalloc(size_t size);
 
@@ -49,7 +49,7 @@ void _pxlFree(void* mem);
 
 
 /*
-* Error manager
+* Error Manager
 */
 typedef enum PXLresult
 {

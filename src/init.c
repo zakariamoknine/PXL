@@ -2,11 +2,11 @@
 #include "internals.h"
 
 #include <stdlib.h>
-
 #include <stdio.h>
 
+
 /*
-* Error manager
+* Error Manager
 */
 PXL_THREAD_LOCAL const char* _PxlCurrentThreadError = NULL;
 
@@ -21,7 +21,7 @@ const char* pxlGetError()
 }
 
 /*
-* Allocator
+* Memory Allocator
 */
 typedef void* (*pxlAllocateFun)(size_t size);
 typedef void* (*pxlReallocateFun)(void* mem, size_t size);
