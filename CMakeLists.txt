@@ -9,7 +9,7 @@ endif()
 
 # By default we build PXL as a static library
 # The USER must add -DPXL_BUILD_DLL=ON for building a shared/dynamic library
-option(PXL_BUILD_DLL "Build PXL as a DLL (shared library)" OFF)
+option(PXL_BUILD_DLL "Build PXL as a shared library / DLL" OFF)
 
 if(PXL_BUILD_DLL)
 	set(PXL_LIBRARY_TYPE SHARED)
