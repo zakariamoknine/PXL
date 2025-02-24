@@ -34,7 +34,7 @@ if(PXL_BUILD_DLL)
 	target_compile_definitions(PXL INTERFACE PXL_DLL)
 endif()
 
-# Forward all output binaries in the binary dir, keeping it simple
+# Forward all output binaries to the binary dir, keeping it simple
 set_target_properties(PXL PROPERTIES
 	LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 	ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
