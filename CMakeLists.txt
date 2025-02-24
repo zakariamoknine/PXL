@@ -45,7 +45,6 @@ set_target_properties(PXL PROPERTIES
 target_include_directories(PXL PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
-
 # PXL/src/* -> PXL
 target_include_directories(PXL PRIVATE
 	"${PXL_SOURCE_DIR}/src"
