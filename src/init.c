@@ -30,7 +30,7 @@ void _pxlInputError(PXLresult result, const char* description)
 		_pxlCurrentThreadErrorPtr = _pxlCurrentThreadError;
 	}
 	else
-{
+	{
 		_pxlCurrentThreadErrorPtr = _pxlErrorMessages[result];
 	}
 }
