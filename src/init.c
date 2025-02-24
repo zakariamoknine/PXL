@@ -22,17 +22,17 @@ static PXL_THREAD_LOCAL char* _pxlCurrentThreadErrorPtr = NULL;
 
 void _pxlInputError(PXLresult result, const char* description)
 {
-    if (result == PXL_ERROR && description)
-    {
+	if (result == PXL_ERROR && description)
+	{
 		uint32_t desciption_length = strnlen(description, PXL_MAX_ERROR_LENGTH - 1);
 		memcpy(_pxlCurrentThreadError, description, desciption_length);
 		_pxlCurrentThreadError[desciption_length] = '\0';
-        _pxlCurrentThreadErrorPtr = _pxlCurrentThreadError;
-    }
-    else
-    {
-        _pxlCurrentThreadErrorPtr = _pxlErrorMessages[result];
-    }
+		_pxlCurrentThreadErrorPtr = _pxlCurrentThreadError;
+	}
+	else
+{
+		_pxlCurrentThreadErrorPtr = _pxlErrorMessages[result];
+	}
 }
 
 PXLAPI const char* pxlGetError(void)
