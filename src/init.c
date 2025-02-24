@@ -24,8 +24,9 @@ void _pxlInputError(PXLresult result, const char* description)
 {
     if (result == PXL_ERROR && description)
     {
-        strncpy(_pxlCurrentThreadError, description, PXL_MAX_ERROR_LENGTH - 1);
-        _pxlCurrentThreadError[PXL_MAX_ERROR_LENGTH - 1] = '\0';
+		uint32_t desciption_length = strnlen(description, PXL_MAX_ERROR_LENGTH - 1);
+		memcpy(_pxlCurrentThreadError, description, desciption_length);
+		_pxlCurrentThreadError[desciption_length] = '\0';
         _pxlCurrentThreadErrorPtr = _pxlCurrentThreadError;
     }
     else
@@ -61,7 +62,7 @@ void _pxlFree(void* mem)
     _pxlAllocator.deallocate(mem);
 }
 
-static void _pxlUseDefaultAllocater(void)
+static void _pxlUseDefaultAllocator(void)
 {
     _pxlAllocator.allocate = malloc;
     _pxlAllocator.reallocate = realloc;
@@ -85,9 +86,9 @@ PXLAPI void pxlSetAllocator(PXLallocator* allocator)
 PXLAPI PXLresult pxlInit(void)
 {
 	// If a custom allocator is set by the USER, don't use the default allocator
-	if (_pxlAllocator.allocate != NULL)
+	if (_pxlAllocator.allocate == NULL)
 	{
-		_pxlUseDefaultAllocater();
+		_pxlUseDefaultAllocator();
 	}
 	
     return PXL_SUCCESS;
