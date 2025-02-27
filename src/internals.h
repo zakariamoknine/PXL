@@ -8,12 +8,8 @@
 */
 #if defined(__cplusplus) &&  __cplusplus >= 201103L
  #define PXL_THREAD_LOCAL thread_local
-#elif defined(__GNUC__)
- #define PXL_THREAD_LOCAL __thread
-#elif defined(_MSC_VER)
+#else
  #define PXL_THREAD_LOCAL __declspec(thread)
-#elif defined (__STDC_VERSION__) && __STDC_VERSION__ >= 201112L && !defined(__STDC_NO_THREADS__)
- #define PXL_THREAD_LOCAL _Thread_local
 #endif
 
 
