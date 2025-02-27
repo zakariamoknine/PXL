@@ -11,9 +11,9 @@ if(NOT MSVC)
 	message(FATAL_ERROR "PXL requires the MSVC toolchain for building, Clang support might be added in the future!")
 endif()
 
-# By default we build PXL as a static library
+# By default we build PXL as a shared library
 # The USER must add -DPXL_BUILD_DLL=ON for building a shared/dynamic library
-option(PXL_BUILD_DLL "Build PXL as a shared library / DLL" OFF)
+option(PXL_BUILD_DLL "Build PXL as a shared library / DLL" ON)
 
 if(PXL_BUILD_DLL)
 	set(PXL_LIBRARY_TYPE SHARED)
