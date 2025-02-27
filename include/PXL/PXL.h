@@ -9,11 +9,6 @@ extern "C" {
 
 
 
-#include <stddef.h>
-#include <stdint.h>
-
-
-
 #if !defined(_WIN32)
  #error "PXL is Windows only"
 #endif
@@ -34,38 +29,6 @@ extern "C" {
 
 
 #define PXL_MAX_ERROR_LENGTH 256
-
-
-/*
-*
-*/
-typedef void* (*pxlAllocateFun)(size_t size);
-
-
-/*
-*
-*/
-typedef void* (*pxlReallocateFun)(void* mem, size_t size);
-
-
-/*
-*
-*/
-typedef void  (*pxlDeallocateFun)(void* mem);
-
-
-/*
-*
-*/
-typedef struct PXLallocator
-{
-    pxlAllocateFun allocate;
-
-    pxlReallocateFun reallocate;
-
-    pxlDeallocateFun deallocate;
-
-} PXLallocator;
 
 
 /*
@@ -99,12 +62,6 @@ PXLAPI void pxlTerminate(void);
 *
 */
 PXLAPI const char* pxlGetError(void);
-
-
-/*
-*
-*/
-PXLAPI void pxlSetAllocator(PXLallocator* allocator);
 
 
 

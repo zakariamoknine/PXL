@@ -7,6 +7,10 @@ if(NOT WIN32)
 	message(FATAL_ERROR "PXL is Windows only")
 endif()
 
+if(NOT MSVC)
+	message(FATAL_ERROR "PXL requires the MSVC toolchain for building, Clang support might be added in the future!")
+endif()
+
 # By default we build PXL as a static library
 # The USER must add -DPXL_BUILD_DLL=ON for building a shared/dynamic library
 option(PXL_BUILD_DLL "Build PXL as a shared library / DLL" OFF)
@@ -18,8 +22,32 @@ else()
 endif()
 
 add_library(PXL ${PXL_LIBRARY_TYPE}
+	src/PXL.c
 	src/init.c
 )
+
+# /RTC1 has to be disabled, otherwise CRT functions will be used and cause linking errors
+foreach(cflag
+	CMAKE_C_FLAGS 
+	CMAKE_C_FLAGS_DEBUG 
+	CMAKE_C_FLAGS_RELEASE 
+	CMAKE_C_FLAGS_MINSIZEREL 
+	CMAKE_C_FLAGS_RELWITHDEBINFO)
+	string(REGEX REPLACE "/RTC(su|[1su])" "" ${cflag} "${${cflag}}")
+endforeach(cflag)
+
+# PXL DLL doesn't link against anything except the Win32 API (kernel32.dll and others)
+# We also recommend for Windows applications that use PXL to NOT link against the standard C library if possible
+target_compile_options(PXL PRIVATE "/GS-" "/Zl")
+
+# Adding /NODEFAULTLIB prevents linking against the standard C library, /GS- and /Zl prevents codegen that would
+# use the VC runtime
+if(PXL_BUILD_DLL)
+	target_link_options(PXL PRIVATE "/NODEFAULTLIB")
+endif()
+
+# Linking against Win32 native libraries
+target_link_libraries(PXL PRIVATE kernel32 user32 gdi32)
 
 # PXL requires UNICODE support
 target_compile_definitions(PXL PRIVATE 
