@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.16)
 
 project(PXL VERSION 1.0.0 LANGUAGES C)
 
-# We make sure we're on Windows
 if(NOT WIN32)
 	message(FATAL_ERROR "PXL is Windows only")
 endif()

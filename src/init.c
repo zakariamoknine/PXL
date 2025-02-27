@@ -14,8 +14,8 @@ static char* _pxlErrorMessages[5] =
     "File operation failed, check your provided filepath(s)"
 };
 
-static PXL_THREAD_LOCAL char _pxlCurrentThreadError[PXL_MAX_ERROR_LENGTH];
-static PXL_THREAD_LOCAL char* _pxlCurrentThreadErrorPtr = NULL;
+// static PXL_THREAD_LOCAL char _pxlCurrentThreadError[PXL_MAX_ERROR_LENGTH];
+// static PXL_THREAD_LOCAL char* _pxlCurrentThreadErrorPtr = NULL;
 
 void _pxlInputError(PXLresult result, const char* description)
 {
@@ -28,13 +28,14 @@ void _pxlInputError(PXLresult result, const char* description)
 	}
 	else
 	{
-		_pxlCurrentThreadErrorPtr = _pxlErrorMessages[result];
+		// _pxlCurrentThreadErrorPtr = _pxlErrorMessages[result];
 	}
 }
 
 PXLAPI const char* pxlGetError(void)
 {
-    return _pxlCurrentThreadErrorPtr;
+    // return _pxlCurrentThreadErrorPtr;
+	return NULL;
 }
 
 
