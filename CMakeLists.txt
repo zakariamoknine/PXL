@@ -38,10 +38,9 @@ endforeach(cflag)
 
 # PXL DLL doesn't link against anything except the Win32 API (kernel32.dll and others)
 # We also recommend for Windows applications that use PXL to NOT link against the standard C library if possible
-target_compile_options(PXL PRIVATE "/GS-" "/Zl")
-
 # Adding /NODEFAULTLIB prevents linking against the standard C library, /GS- and /Zl prevents codegen that would
 # use the VC runtime
+target_compile_options(PXL PRIVATE "/GS-" "/Zl")
 if(PXL_BUILD_DLL)
 	target_link_options(PXL PRIVATE "/NODEFAULTLIB")
 endif()
@@ -69,11 +68,11 @@ set_target_properties(PXL PROPERTIES
 	RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
-# include/PXL/Hat.h -> USER
+# Add include/PXL/Hat.h to USERs
 target_include_directories(PXL PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
-# PXL/src/* -> PXL
+# Add PXL/src/* is to PXL API
 target_include_directories(PXL PRIVATE
 	"${PXL_SOURCE_DIR}/src"
 )
