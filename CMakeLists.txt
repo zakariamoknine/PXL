@@ -35,10 +35,9 @@ foreach(cflag
 	string(REGEX REPLACE "/RTC(su|[1su])" "" ${cflag} "${${cflag}}")
 endforeach(cflag)
 
-# PXL DLL doesn't link against anything except the Win32 API (kernel32.dll and others)
-# We also recommend for Windows applications that use PXL to NOT link against the standard C library if possible
-# Adding /NODEFAULTLIB prevents linking against the standard C library, /GS- and /Zl prevents codegen that would
-# use the VC runtime
+# PXL DLL doesn't link against anything except the Win32 native libraries (kernel32.dll, user32.lib and more)
+# Adding /NODEFAULTLIB prevents linking against the standard C library
+# Adding /GS- and /Zl prevents codegen that would use the CRT
 target_compile_options(PXL PRIVATE "/GS-" "/Zl")
 if(PXL_BUILD_DLL)
 	target_link_options(PXL PRIVATE "/NODEFAULTLIB")
