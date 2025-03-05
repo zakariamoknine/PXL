@@ -3,6 +3,10 @@
 
 #include "../include/PXL/PXL.h"
 
+#include <stddef.h>
+#include <stdint.h>
+
+
 /*
 * Thread Local
 */

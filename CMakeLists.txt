@@ -21,12 +21,9 @@ else()
 endif()
 
 add_library(PXL ${PXL_LIBRARY_TYPE}
-	src/PXL.c
 	src/init.c
+	src/window/window.c
 )
-
-# Linking against Win32 native libraries
-target_link_libraries(PXL PRIVATE kernel32 user32 gdi32)
 
 # PXL requires UNICODE support
 target_compile_definitions(PXL PRIVATE 

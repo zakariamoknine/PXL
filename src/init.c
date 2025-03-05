@@ -2,6 +2,8 @@
 
 #include <windows.h>
 
+#include <string.h>
+
 /*
 * Error Manager
 */
@@ -35,7 +37,6 @@ void _pxlInputError(PXLresult result, const char* description)
 PXLAPI const char* pxlGetError(void)
 {
     return _pxlCurrentThreadErrorPtr;
-	return NULL;
 }
 
 

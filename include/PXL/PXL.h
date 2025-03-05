@@ -49,6 +49,12 @@ typedef enum PXLresult
 /*
 *
 */
+typedef struct PXLwindow PXLwindow;
+
+
+/*
+*
+*/
 PXLAPI PXLresult pxlInit(void);
 
 
