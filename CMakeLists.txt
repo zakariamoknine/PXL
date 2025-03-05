@@ -7,7 +7,7 @@ if(NOT WIN32)
 endif()
 
 if(NOT MSVC)
-	message(FATAL_ERROR "PXL requires the MSVC toolchain for building, Clang support might be added in the future!")
+	message(FATAL_ERROR "PXL requires the MSVC toolchain for building, Clang support might be added in the future")
 endif()
 
 # By default we build PXL as a shared library
@@ -24,24 +24,6 @@ add_library(PXL ${PXL_LIBRARY_TYPE}
 	src/PXL.c
 	src/init.c
 )
-
-# /RTC1 has to be disabled, otherwise CRT functions will be used and cause linking errors
-foreach(cflag
-	CMAKE_C_FLAGS 
-	CMAKE_C_FLAGS_DEBUG 
-	CMAKE_C_FLAGS_RELEASE 
-	CMAKE_C_FLAGS_MINSIZEREL 
-	CMAKE_C_FLAGS_RELWITHDEBINFO)
-	string(REGEX REPLACE "/RTC(su|[1su])" "" ${cflag} "${${cflag}}")
-endforeach(cflag)
-
-# PXL DLL doesn't link against anything except the Win32 native libraries (kernel32.dll, user32.lib and more)
-# Adding /NODEFAULTLIB prevents linking against the standard C library
-# Adding /GS- and /Zl prevents codegen that would use the CRT
-target_compile_options(PXL PRIVATE "/GS-" "/Zl")
-if(PXL_BUILD_DLL)
-	target_link_options(PXL PRIVATE "/NODEFAULTLIB")
-endif()
 
 # Linking against Win32 native libraries
 target_link_libraries(PXL PRIVATE kernel32 user32 gdi32)
